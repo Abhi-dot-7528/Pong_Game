@@ -24,12 +24,16 @@ screen.onkey(l_paddle.go_down, "s")
 
 game_on = True
 while game_on:
-    sleep(0.08)
+    sleep(0.1)
     screen.update()
     ball.move()
 
     if ball.ycor() > 280 or ball.ycor() < -280:
-        ball.bounce_back()
+        ball.bounce_y()
+
+    # Detect collision with paddles
+    if ball.distance(r_paddle) < 50 and ball.xcor() > 320 or ball.distance(l_paddle) < 50 and ball.xcor() < -320:
+        ball.bounce_x()
 
     if ball.xcor() > 380 or ball.xcor() < -380:
         print("Game Over")
