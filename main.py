@@ -24,7 +24,7 @@ screen.onkey(l_paddle.go_down, "s")
 
 game_on = True
 while game_on:
-    sleep(0.1)
+    sleep(0.06)
     screen.update()
     ball.move()
 
@@ -35,9 +35,13 @@ while game_on:
     if ball.distance(r_paddle) < 50 and ball.xcor() > 320 or ball.distance(l_paddle) < 50 and ball.xcor() < -320:
         ball.bounce_x()
 
-    if ball.xcor() > 380 or ball.xcor() < -380:
-        print("Game Over")
-        game_on = False
+    # Right paddle loses
+    if ball.xcor() > 380:
+        ball.reset_ball()
+
+    # Left paddle loses
+    if ball.xcor() < -380:
+        ball.reset_ball()
 
 
 screen.exitonclick()
