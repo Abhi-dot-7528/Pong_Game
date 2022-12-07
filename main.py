@@ -28,4 +28,12 @@ while game_on:
     screen.update()
     ball.move()
 
+    if ball.ycor() > 280 or ball.ycor() < -280:
+        ball.bounce_back()
+
+    if ball.xcor() > 380 or ball.xcor() < -380:
+        print("Game Over")
+        game_on = False
+
+
 screen.exitonclick()
